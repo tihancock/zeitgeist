@@ -2,7 +2,7 @@
   (:use [clojure.string :only [split lower-case]]
         [clojure.set :only [map-invert]]))
 
-(def re #" |\.|,|\?|!|\"|:|\(|\)")
+(def re #" |\.|,|\?|!|\"|:|\(|\)|\n")
 
 (defn tokenise
   [text]
