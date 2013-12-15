@@ -1,15 +1,9 @@
 (ns zeitgeist.markov
-  (:use [clojure.string :only [split lower-case]]))
-
-(def re #" |\.|,|\?|!|\"|:|\(|\)|\n")
-
-(defn tokenise
-  [text]
-  (filter #(not (empty? %)) (split (lower-case text) re)))
+  (:require [zeitgeist.tokeniser :as tokeniser]))
 
 (defn bigrams
   [text]
-  (let [words (tokenise text)]
+  (let [words (tokeniser/tokenise text)]
     (partition 2 1 words)))
 
 ;; Oh my god this is horrible
