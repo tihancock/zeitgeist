@@ -1,6 +1,5 @@
 (ns zeitgeist.markov
-  (:use [clojure.string :only [split lower-case]]
-        [clojure.set :only [map-invert]]))
+  (:use [clojure.string :only [split lower-case]]))
 
 (def re #" |\.|,|\?|!|\"|:|\(|\)|\n")
 
