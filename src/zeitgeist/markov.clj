@@ -1,5 +1,6 @@
 (ns zeitgeist.markov
   (:require [zeitgeist.tokeniser :as tokeniser]
+            [zeitgeist.joiner :as joiner]
             [clojure.string :as string]))
 
 (defn- is-capitalised
@@ -40,7 +41,7 @@
   (let [initials (filter is-capitalised (keys map))
         first-word (nth initials (rand-int (count initials)))
         end-tokens (conj tokeniser/sentence-enders "NULL")]
-    (string/join " " (take-while #(not (end-tokens %)) (generate-chain map first-word)))))
+    (joiner/join (take-while #(not (end-tokens %)) (generate-chain map first-word)))))
 
 (defn get-sentences
   [map]
