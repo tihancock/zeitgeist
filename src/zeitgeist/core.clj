@@ -1,4 +1,5 @@
 (ns zeitgeist.core
+  (:gen-class)
   (:require [zeitgeist.scraper :as scraper]
             [zeitgeist.markov :as markov]
             [clojure.string :as string]))
