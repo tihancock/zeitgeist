@@ -9,4 +9,5 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [clj-http            "0.7.8"]
                  [io.curtis/boilerpipe-clj "0.3.0"]
-                 [hiccup "1.0.4"]])
+                 [hiccup "1.0.4"]
+                 [overtone/at-at "1.2.0"]])
