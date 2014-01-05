@@ -2,10 +2,11 @@
   (:gen-class)
   (:require [zeitgeist.scraper :as scraper]
             [zeitgeist.markov :as markov]
+            [zeitgeist.html :as html]
             [clojure.string :as string]))
 
 (defn -main
   []
   (let [scrapings (scraper/scrape)
         m (markov/markov-map (apply str scrapings))]
-    (doall (map println (take 30 (markov/get-sentences m))))))
+    (spit "zeitgeist.html" (html/generate-page (take 30 (markov/get-sentences m))))))

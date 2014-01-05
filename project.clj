@@ -8,4 +8,5 @@
   :profiles {:uberjar {:aot :all}}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [clj-http            "0.7.8"]
-                 [io.curtis/boilerpipe-clj "0.3.0"]])
+                 [io.curtis/boilerpipe-clj "0.3.0"]
+                 [hiccup "1.0.4"]])
