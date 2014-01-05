@@ -12,4 +12,5 @@
                  [io.curtis/boilerpipe-clj "0.3.0"]
                  [hiccup "1.0.4"]
                  [overtone/at-at "1.2.0"]
-                 [compojure "1.1.6"]])
+                 [compojure "1.1.6"]
+                 [org.clojure/core.async "0.1.267.0-0d7780-alpha"]])
