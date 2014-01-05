@@ -3,8 +3,10 @@
   (:require [zeitgeist.scraper :as scraper]
             [zeitgeist.markov :as markov]
             [zeitgeist.html :as html]
-            [clojure.string :as string])
-  (:use [overtone.at-at]))
+            [clojure.string :as string]
+            [compojure.route :as route])
+  (:use [overtone.at-at]
+        [compojure.core]))
 
 (defn- make-markov-map 
   []
@@ -19,6 +21,5 @@
 
 (every day #(swap! markov-map (make-markov-map)) pool)
 
-(defn -main
-  []
-  (spit "zeitgeist.html" (html/generate-page (take 30 (markov/get-sentences @markov-map)))))
+(defroutes handler
+  (GET "/" [] (html/generate-page (take 30 (markov/get-sentences @markov-map)))))
