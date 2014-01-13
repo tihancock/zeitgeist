@@ -15,18 +15,25 @@
     (markov/markov-map (apply str scrapings))))
 
 (def markov-map (atom (make-markov-map)))
+(def ticks (atom 0))
 
 (def pool (mk-pool))
 
 (def day (* 1000 60 60 24))
 
-(every day #(swap! markov-map (make-markov-map)) pool)
+(every day #((swap! markov-map (make-markov-map))
+             (swap! ticks inc)) pool)
 
 (def sentence-chan (chan 2000))
 
-(thread (loop [sentences (markov/get-sentences @markov-map)]
+(thread (loop [sentences (markov/get-sentences @markov-map)
+               last-tick @ticks]
           (>!! sentence-chan (first sentences))
-          (recur (rest sentences))))
+          (let [new-tick @ticks
+                new-sentences (if (> new-tick last-tick)
+                                (markov/get-sentences @markov-map)
+                                (rest sentences))]
+           (recur new-sentences @ticks))))
 
 (defroutes handler
   (GET "/" [] (let [sentence (<!! sentence-chan)]
